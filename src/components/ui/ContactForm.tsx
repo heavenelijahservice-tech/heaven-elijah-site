@@ -19,12 +19,14 @@ export function ContactForm() {
 
     const name = String(data.get('name') ?? '').trim();
     const email = String(data.get('email') ?? '').trim();
+    const need = String(data.get('need') ?? '').trim();
     const message = String(data.get('message') ?? '').trim();
     const honeypot = String(data.get('website') ?? '');
 
     const nextErrors: Record<string, string> = {};
     if (!name) nextErrors.name = 'Nom requis';
     if (!EMAIL_RE.test(email)) nextErrors.email = 'Email invalide';
+    if (!need) nextErrors.need = 'Type de besoin requis';
     if (!message) nextErrors.message = 'Message requis';
 
     if (Object.keys(nextErrors).length > 0) {
@@ -74,7 +76,7 @@ export function ContactForm() {
         <input type="tel" name="phone" id="field-phone" className="form-input" autoComplete="tel" />
       </Field>
 
-      <Field label="Type de besoin" name="need" required>
+      <Field label="Type de besoin" name="need" required error={errors.need}>
         <select name="need" id="field-need" className="form-input" defaultValue="">
           <option value="" disabled>— Choisir —</option>
           <option>Pack Mémoire/Thèse</option>
@@ -88,10 +90,13 @@ export function ContactForm() {
         <textarea name="message" id="field-message" rows={5} className="form-input resize-y" />
       </Field>
 
-      <div className="hidden" aria-hidden="true">
-        <label>
-          Ne pas remplir<input type="text" name="website" tabIndex={-1} autoComplete="off" />
-        </label>
+      {/* Honeypot anti-spam : invisible aux humains (off-screen) ET masqué aux lecteurs d'écran (aria-hidden). Les bots remplissent tous les champs, on rejette si rempli. */}
+      <div
+        aria-hidden="true"
+        className="absolute left-[-9999px] top-[-9999px] h-px w-px overflow-hidden"
+      >
+        <label htmlFor="hp-website">Ne pas remplir ce champ</label>
+        <input id="hp-website" type="text" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
       <button

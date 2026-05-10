@@ -11,9 +11,6 @@ export function WhyHES() {
         </h2>
         <p className="mt-3 max-w-xl text-text-muted">
           Tous nos engagements en un coup d'œil.
-          <span className="ml-2 rounded bg-orange/15 px-1.5 py-0.5 text-xs text-orange">
-            Stats à confirmer
-          </span>
         </p>
 
         <div className="mt-10 grid gap-3 md:grid-cols-4 md:grid-rows-2">
