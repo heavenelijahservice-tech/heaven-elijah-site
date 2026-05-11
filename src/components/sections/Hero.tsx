@@ -31,15 +31,15 @@ export function Hero() {
         }}
       />
 
-      {/* Logo décoratif géant rotatif sur la droite — semi-transparent, derrière le contenu */}
+      {/* Logo décoratif géant rotatif sur la droite — derrière le contenu */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-32 top-1/2 hidden -translate-y-1/2 opacity-[0.07] lg:block"
+        className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 opacity-[0.15] md:block"
       >
         <img
           src="/logo-icon.svg"
           alt=""
-          className="animate-spin-slow h-[600px] w-[600px]"
+          className="animate-spin-slow h-[520px] w-[520px]"
         />
       </div>
 
