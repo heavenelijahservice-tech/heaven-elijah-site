@@ -24,7 +24,7 @@ export function Header() {
           onClick={close}
           className="flex items-center gap-2 font-bold tracking-tight"
         >
-          <img src="/logo-icon.svg" alt="Heaven Elijah Service" className="size-8" />
+          <img src="/logo-icon.svg" alt="Heaven Elijah Service" className="size-11" />
           <span aria-hidden="true" className="hidden sm:inline">
             Heaven Elijah
           </span>
