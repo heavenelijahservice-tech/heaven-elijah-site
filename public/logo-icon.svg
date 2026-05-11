@@ -2,50 +2,37 @@
   <title>Heaven Elijah Service</title>
 
   <!-- Cercle avec deux interruptions à droite (haut et bas) où passent les barres du H -->
-  <path d="M 60 16
-           A 44 44 0 0 1 99 38
-           M 99 82
-           A 44 44 0 0 1 60 104
-           A 44 44 0 0 1 16 60
-           A 44 44 0 0 1 60 16 Z"
-        fill="none" stroke="#15233f" stroke-width="2.8" stroke-linecap="butt"/>
+  <path d="M 60 14
+           A 46 46 0 0 1 102 38
+           M 102 82
+           A 46 46 0 0 1 60 106
+           A 46 46 0 0 1 14 60
+           A 46 46 0 0 1 60 14 Z"
+        fill="none" stroke="#f5efe0" stroke-width="4.5"/>
 
   <!-- Barre gauche du H -->
-  <rect x="42" y="10" width="13" height="100" fill="#15233f" rx="1.5"/>
+  <rect x="40" y="8" width="15" height="104" fill="#f5efe0" rx="1.5"/>
 
   <!-- Barre droite du H -->
-  <rect x="65" y="10" width="13" height="100" fill="#15233f" rx="1.5"/>
+  <rect x="65" y="8" width="15" height="104" fill="#f5efe0" rx="1.5"/>
 
   <!-- Crossbar -->
-  <rect x="48" y="55" width="24" height="10" fill="#15233f"/>
+  <rect x="46" y="54" width="28" height="12" fill="#f5efe0"/>
 
-  <!-- Hélice ADN — double brin orange, légèrement décalée à droite (signature du logo) -->
-  <g stroke="#f09042" stroke-width="2.2" fill="none" stroke-linecap="round">
+  <!-- Hélice ADN — double brin orange épais -->
+  <g stroke="#f09042" stroke-width="4" fill="none" stroke-linecap="round">
     <!-- Brin A : sinusoïdal -->
-    <path d="M 56 32
-             C 68 38, 68 46, 56 52
-             C 44 58, 44 66, 56 72
-             C 68 78, 68 86, 56 92"/>
+    <path d="M 55 28
+             C 70 36, 70 46, 55 54
+             C 40 62, 40 72, 55 80
+             C 70 88, 70 94, 55 96"/>
     <!-- Brin B : sinusoïdal opposé -->
-    <path d="M 64 32
-             C 52 38, 52 46, 64 52
-             C 76 58, 76 66, 64 72
-             C 52 78, 52 86, 64 92"/>
+    <path d="M 65 28
+             C 50 36, 50 46, 65 54
+             C 80 62, 80 72, 65 80
+             C 50 88, 50 94, 65 96"/>
   </g>
 
-  <!-- Rungs (échelons) de l'hélice — courtes barres horizontales blanches qui couvrent le crossbar du H -->
-  <g stroke="#f5efe0" stroke-width="2.5" stroke-linecap="butt">
-    <line x1="55" y1="36" x2="65" y2="36"/>
-    <line x1="55" y1="43" x2="65" y2="43"/>
-    <line x1="55" y1="61" x2="65" y2="61"/>
-    <line x1="55" y1="68" x2="65" y2="68"/>
-    <line x1="55" y1="82" x2="65" y2="82"/>
-    <line x1="55" y1="88" x2="65" y2="88"/>
-  </g>
-
-  <!-- Bandeau navy qui passe derrière l'hélice pour qu'elle "traverse" le crossbar -->
-  <rect x="55" y="55" width="10" height="10" fill="#15233f"/>
-  <!-- L'hélice continue par-dessus grâce à l'ordre de rendu (mais comme rect est derrière, on redessine les rungs là) -->
-  <line x1="55" y1="58" x2="65" y2="58" stroke="#f09042" stroke-width="1.5"/>
-  <line x1="55" y1="62" x2="65" y2="62" stroke="#f09042" stroke-width="1.5"/>
+  <!-- Bandeau crossbar par-dessus l'hélice -->
+  <rect x="55" y="54" width="10" height="12" fill="#f5efe0"/>
 </svg>
