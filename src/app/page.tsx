@@ -6,6 +6,7 @@ import { WhyHES } from '@/components/sections/WhyHES';
 import { Testimonials } from '@/components/sections/Testimonials';
 import { FAQ } from '@/components/sections/FAQ';
 import { FinalCTA } from '@/components/sections/FinalCTA';
+import { MotionSection } from '@/components/ui/MotionSection';
 import { SITE } from '@/data/site';
 
 const jsonLd = {
@@ -35,13 +36,27 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Hero />
-      <PackFamilies />
-      <Process />
-      <Commitment />
-      <WhyHES />
-      <Testimonials />
-      <FAQ />
-      <FinalCTA />
+      <MotionSection>
+        <PackFamilies />
+      </MotionSection>
+      <MotionSection>
+        <Process />
+      </MotionSection>
+      <MotionSection>
+        <Commitment />
+      </MotionSection>
+      <MotionSection>
+        <WhyHES />
+      </MotionSection>
+      <MotionSection>
+        <Testimonials />
+      </MotionSection>
+      <MotionSection>
+        <FAQ />
+      </MotionSection>
+      <MotionSection>
+        <FinalCTA />
+      </MotionSection>
     </>
   );
 }

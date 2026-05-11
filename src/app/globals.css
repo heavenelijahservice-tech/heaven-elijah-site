@@ -95,3 +95,15 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
   outline: none;
   border-color: var(--color-orange);
 }
+
+/* Animation : rotation lente du logo décoratif dans le hero */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 80s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-spin-slow { animation: none; }
+}
