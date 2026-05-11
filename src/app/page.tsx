@@ -1,6 +1,7 @@
 import { Hero } from '@/components/sections/Hero';
 import { PackFamilies } from '@/components/sections/PackFamilies';
 import { Process } from '@/components/sections/Process';
+import { Disciplines } from '@/components/sections/Disciplines';
 import { Commitment } from '@/components/sections/Commitment';
 import { WhyHES } from '@/components/sections/WhyHES';
 import { Testimonials } from '@/components/sections/Testimonials';
@@ -41,6 +42,9 @@ export default function HomePage() {
       </MotionSection>
       <MotionSection>
         <Process />
+      </MotionSection>
+      <MotionSection>
+        <Disciplines />
       </MotionSection>
       <MotionSection>
         <Commitment />

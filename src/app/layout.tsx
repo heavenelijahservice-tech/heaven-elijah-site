@@ -5,6 +5,7 @@ import { GeistMono } from 'geist/font/mono';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
+import { WhatsAppFAB } from '@/components/ui/WhatsAppFAB';
 import { SITE } from '@/data/site';
 
 export const metadata: Metadata = {
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppFAB />
       </body>
     </html>
   );

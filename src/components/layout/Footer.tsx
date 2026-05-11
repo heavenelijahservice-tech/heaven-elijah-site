@@ -1,9 +1,34 @@
 import Link from 'next/link';
 import { SITE } from '@/data/site';
 
+const UNIVERSITIES = [
+  'UCAD',
+  'UGB',
+  'Université de Thiès',
+  'Université Alioune Diop',
+  'IRESSEF',
+  'Université de Ziguinchor',
+];
+
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-navy text-sm">
+      {/* Bande "Ils nous ont fait confiance" */}
+      <div className="border-b border-white/10">
+        <div className="container-hes flex flex-col gap-4 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between md:gap-8">
+          <p className="text-xs uppercase tracking-[0.2em] text-text-muted">
+            Étudiants et chercheurs accompagnés issus de
+          </p>
+          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-text-muted/80">
+            {UNIVERSITIES.map(u => (
+              <li key={u} className="opacity-80 transition-opacity hover:opacity-100">
+                {u}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
       <div className="container-hes grid gap-8 px-5 py-12 sm:px-8 md:grid-cols-4">
         <div>
           <Link href="/" className="flex items-center gap-2 font-bold">
