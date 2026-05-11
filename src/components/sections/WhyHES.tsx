@@ -21,7 +21,7 @@ export function WhyHES() {
                 <AnimatedCounter to={50} suffix="+" />
               </p>
               <p className="mt-3 max-w-xs text-sm text-text-muted">
-                Mémoires, thèses et analyses livrés à des étudiants et chercheurs ouest-africains.
+                Mémoires, thèses et analyses livrés à des étudiants et chercheurs ouest-africains depuis 2024.
               </p>
             </div>
           </BentoCard>

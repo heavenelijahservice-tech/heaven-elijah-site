@@ -1,8 +1,10 @@
 import { Hero } from '@/components/sections/Hero';
 import { PackFamilies } from '@/components/sections/PackFamilies';
 import { Process } from '@/components/sections/Process';
+import { Commitment } from '@/components/sections/Commitment';
 import { WhyHES } from '@/components/sections/WhyHES';
 import { Testimonials } from '@/components/sections/Testimonials';
+import { FAQ } from '@/components/sections/FAQ';
 import { FinalCTA } from '@/components/sections/FinalCTA';
 import { SITE } from '@/data/site';
 
@@ -35,8 +37,10 @@ export default function HomePage() {
       <Hero />
       <PackFamilies />
       <Process />
+      <Commitment />
       <WhyHES />
       <Testimonials />
+      <FAQ />
       <FinalCTA />
     </>
   );
