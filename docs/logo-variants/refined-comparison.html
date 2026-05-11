@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>HES — Comparaison original vs affiné</title>
+<style>
+  body { background: #0e1729; color: #fff; font-family: system-ui, sans-serif; margin: 0; padding: 40px 24px; }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: -0.02em; }
+  .sub { color: #c9cfdc; font-size: 13px; margin: 0 0 32px; max-width: 800px; line-height: 1.5; }
+
+  .section { max-width: 1400px; margin: 0 auto 40px; }
+  .section h2 { font-size: 11px; color: #f09042; letter-spacing: 0.2em; text-transform: uppercase; margin: 0 0 16px; }
+
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .panel { background: #1a2541; border: 1px solid #2a3a5c; border-radius: 12px; padding: 24px; }
+  .panel.original { background: #fafafa; color: #15233f; border: none; }
+  .panel.refined { background: #fafafa; color: #15233f; border: none; }
+  .panel-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-bottom: 14px; font-weight: 700; }
+  .panel.original .panel-label { color: #15233f; opacity: 0.6; }
+  .panel.refined .panel-label { color: #f09042; }
+
+  .size-row { display: flex; gap: 24px; align-items: center; padding: 12px 0; border-top: 1px solid rgba(0,0,0,0.08); }
+  .size-row:first-of-type { border-top: none; }
+  .size-row .lbl { font-size: 11px; opacity: 0.5; min-width: 80px; }
+  .size-row img, .size-row svg { display: block; }
+
+  .pair-bg { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+  .bg-light { background: #fafafa; padding: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; min-height: 220px; }
+  .bg-dark { background: #15233f; padding: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; min-height: 220px; }
+
+  .notes {
+    background: rgba(240, 144, 66, 0.06); border: 1px solid rgba(240, 144, 66, 0.3);
+    border-radius: 10px; padding: 16px 18px; font-size: 13px; line-height: 1.55;
+    color: #c9cfdc;
+  }
+  .notes strong { color: #f09042; }
+  .notes ul { margin: 8px 0 0 18px; padding: 0; }
+</style>
+</head>
+<body>
+
+<h1>Heaven Elijah Service — Logo affiné vs original</h1>
+<p class="sub">Comparaison côte-à-côte de la version PNG actuelle et de la version SVG vectorielle affinée. Le SVG reste fidèle au concept original (H + hélice ADN + cercle) avec des proportions resserrées et des courbes plus précises. Avantages SVG : crisp à toute taille, fichier ~2 kB (vs PNG ~32 kB), éditable directement, parfait pour tout usage web.</p>
+
+<!-- Comparaison taille header -->
+<section class="section">
+  <h2>— Côte-à-côte, tailles d'usage</h2>
+  <div class="compare">
+
+    <div class="panel original">
+      <div class="panel-label">Original — PNG raster</div>
+      <div class="size-row">
+        <span class="lbl">32 px (header)</span>
+        <img src="../../public/logo.png" width="32" height="32" alt="">
+      </div>
+      <div class="size-row">
+        <span class="lbl">28 px (footer)</span>
+        <img src="../../public/logo.png" width="28" height="28" alt="">
+      </div>
+      <div class="size-row">
+        <span class="lbl">80 px (carte)</span>
+        <img src="../../public/logo.png" width="80" height="80" alt="">
+      </div>
+      <div class="size-row">
+        <span class="lbl">200 px (signage)</span>
+        <img src="../../public/logo.png" width="200" height="200" alt="">
+      </div>
+    </div>
+
+    <div class="panel refined">
+      <div class="panel-label">Affiné — SVG vectoriel</div>
+      <div class="size-row">
+        <span class="lbl">32 px (header)</span>
+        <img src="../../public/logo-icon.svg" width="32" height="32" alt="">
+      </div>
+      <div class="size-row">
+        <span class="lbl">28 px (footer)</span>
+        <img src="../../public/logo-icon.svg" width="28" height="28" alt="">
+      </div>
+      <div class="size-row">
+        <span class="lbl">80 px (carte)</span>
+        <img src="../../public/logo-icon.svg" width="80" height="80" alt="">
+      </div>
+      <div class="size-row">
+        <span class="lbl">200 px (signage)</span>
+        <img src="../../public/logo-icon.svg" width="200" height="200" alt="">
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Variations fond clair / fond sombre -->
+<section class="section">
+  <h2>— Variations sur fond clair & navy</h2>
+  <div class="pair-bg">
+    <div class="bg-light">
+      <img src="../../public/logo-icon.svg" width="160" height="160" alt="">
+    </div>
+    <div class="bg-dark">
+      <!-- Version inversée pour fond sombre : H en cream, cercle en cream, hélice en orange -->
+      <svg width="160" height="160" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 60 16 A 44 44 0 0 1 99 38 M 99 82 A 44 44 0 0 1 60 104 A 44 44 0 0 1 16 60 A 44 44 0 0 1 60 16 Z"
+              fill="none" stroke="#f5efe0" stroke-width="2.8"/>
+        <rect x="42" y="10" width="13" height="100" fill="#f5efe0" rx="1.5"/>
+        <rect x="65" y="10" width="13" height="100" fill="#f5efe0" rx="1.5"/>
+        <rect x="48" y="55" width="24" height="10" fill="#f5efe0"/>
+        <g stroke="#f09042" stroke-width="2.2" fill="none" stroke-linecap="round">
+          <path d="M 56 32 C 68 38, 68 46, 56 52 C 44 58, 44 66, 56 72 C 68 78, 68 86, 56 92"/>
+          <path d="M 64 32 C 52 38, 52 46, 64 52 C 76 58, 76 66, 64 72 C 52 78, 52 86, 64 92"/>
+        </g>
+        <g stroke="#15233f" stroke-width="2.5" stroke-linecap="butt">
+          <line x1="55" y1="36" x2="65" y2="36"/>
+          <line x1="55" y1="43" x2="65" y2="43"/>
+          <line x1="55" y1="61" x2="65" y2="61"/>
+          <line x1="55" y1="68" x2="65" y2="68"/>
+          <line x1="55" y1="82" x2="65" y2="82"/>
+          <line x1="55" y1="88" x2="65" y2="88"/>
+        </g>
+        <rect x="55" y="55" width="10" height="10" fill="#f5efe0"/>
+        <line x1="55" y1="58" x2="65" y2="58" stroke="#f09042" stroke-width="1.5"/>
+        <line x1="55" y1="62" x2="65" y2="62" stroke="#f09042" stroke-width="1.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Notes -->
+<section class="section">
+  <div class="notes">
+    <strong>Ce qui a été affiné :</strong>
+    <ul>
+      <li>Tracé <strong>vectoriel propre</strong> — net à toute taille, du favicon 16px au panneau 2 mètres</li>
+      <li>Proportions resserrées : H légèrement plus fin, cercle légèrement plus serré</li>
+      <li>Hélice ADN avec <strong>brins symétriques en courbes de Bézier</strong> (vs courbes manuelles dans l'original)</li>
+      <li>6 échelons de l'hélice régulièrement espacés (vs ~5 irréguliers)</li>
+      <li>Interruptions du cercle nettes au passage des barres du H (signature préservée)</li>
+      <li>Couleurs strictes : navy <code>#15233f</code>, orange <code>#f09042</code>, cream <code>#f5efe0</code></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Aperçu header live -->
+<section class="section">
+  <h2>— Aperçu en condition réelle (header du site)</h2>
+  <div style="background:#0e1729; border:1px solid #2a3a5c; border-radius:12px; padding:16px 24px; display:flex; align-items:center; gap:12px;">
+    <img src="../../public/logo-icon.svg" width="32" height="32" alt="">
+    <span style="font-weight:700; font-size:14px;">Heaven Elijah</span>
+    <span style="font-weight:700; font-size:14px; color:#f09042;">Service</span>
+    <nav style="margin-left:auto; display:flex; gap:24px; font-size:13px; color:#c9cfdc;">
+      <a style="color:inherit; text-decoration:none;">Accueil</a>
+      <a style="color:inherit; text-decoration:none;">Services</a>
+      <a style="color:inherit; text-decoration:none;">À propos</a>
+      <a style="color:inherit; text-decoration:none;">Contact</a>
+    </nav>
+    <a style="background:#f09042; color:#0e1729; padding:7px 14px; border-radius:6px; font-size:12px; font-weight:700;">Démarrer un projet →</a>
+  </div>
+</section>
+
+</body>
+</html>
