@@ -7,7 +7,7 @@ export function Footer() {
       <div className="container-hes grid gap-8 px-5 py-12 sm:px-8 md:grid-cols-4">
         <div>
           <Link href="/" className="flex items-center gap-2 font-bold">
-            <img src="/logo-icon.svg" alt="" className="size-10" />
+            <img src="/logo.png" alt="" className="size-10" />
             <span>{SITE.name}</span>
           </Link>
           <p className="mt-3 text-text-muted">

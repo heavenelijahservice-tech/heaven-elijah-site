@@ -37,7 +37,7 @@ export function Hero() {
         className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 opacity-[0.15] md:block"
       >
         <img
-          src="/logo-icon.svg"
+          src="/logo.png"
           alt=""
           className="animate-spin-slow h-[520px] w-[520px]"
         />
