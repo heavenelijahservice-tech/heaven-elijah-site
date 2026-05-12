@@ -1,5 +1,6 @@
 import { Hero } from '@/components/sections/Hero';
 import { PackFamilies } from '@/components/sections/PackFamilies';
+import { PackCalculator } from '@/components/sections/PackCalculator';
 import { Process } from '@/components/sections/Process';
 import { Disciplines } from '@/components/sections/Disciplines';
 import { Commitment } from '@/components/sections/Commitment';
@@ -39,6 +40,9 @@ export default function HomePage() {
       <Hero />
       <MotionSection>
         <PackFamilies />
+      </MotionSection>
+      <MotionSection>
+        <PackCalculator />
       </MotionSection>
       <MotionSection>
         <Process />
