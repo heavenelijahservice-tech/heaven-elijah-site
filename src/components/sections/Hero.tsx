@@ -31,15 +31,15 @@ export function Hero() {
         }}
       />
 
-      {/* Logo décoratif géant rotatif sur la droite — picto transparent, blend parfait */}
+      {/* Filigrane discret : picto transparent, opacité faible, rotation imperceptible (4 min/tour) */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-16 top-1/2 hidden -translate-y-1/2 opacity-50 md:block"
+        className="pointer-events-none absolute -right-20 top-1/2 hidden -translate-y-1/2 opacity-[0.12] md:block"
       >
         <img
           src="/logo-picto.png?v=2"
           alt=""
-          className="animate-spin-slow h-[480px] w-[480px]"
+          className="animate-spin-slow h-[400px] w-[400px]"
         />
       </div>
 

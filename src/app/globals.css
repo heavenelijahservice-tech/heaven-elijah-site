@@ -102,7 +102,7 @@ img, svg, video { display: block; max-width: 100%; height: auto; }
   to { transform: rotate(360deg); }
 }
 .animate-spin-slow {
-  animation: spin-slow 80s linear infinite;
+  animation: spin-slow 240s linear infinite;
 }
 @media (prefers-reduced-motion: reduce) {
   .animate-spin-slow { animation: none; }
