@@ -5,27 +5,52 @@ const UNIVERSITIES = [
   'UCAD',
   'UGB',
   'Université de Thiès',
+  'Saint Christopher (USCID)',
+  'IPFORMED',
   'Université Alioune Diop',
-  'IRESSEF',
   'Université de Ziguinchor',
+];
+
+const COUNTRIES = [
+  { flag: '🇸🇳', name: 'Sénégal' },
+  { flag: '🇧🇫', name: 'Burkina Faso' },
+  { flag: '🇲🇷', name: 'Mauritanie' },
+  { flag: '🇲🇦', name: 'Maroc' },
+  { flag: '🇹🇳', name: 'Tunisie' },
+  { flag: '🇫🇷', name: 'France' },
 ];
 
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-navy text-sm">
-      {/* Bande "Ils nous ont fait confiance" */}
+      {/* Bande "Couverture académique et internationale" */}
       <div className="border-b border-white/10">
-        <div className="container-hes flex flex-col gap-4 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between md:gap-8">
-          <p className="text-xs uppercase tracking-[0.2em] text-text-muted">
-            Étudiants et chercheurs accompagnés issus de
-          </p>
-          <ul className="flex flex-wrap gap-x-6 gap-y-2 text-xs font-semibold text-text-muted/80">
-            {UNIVERSITIES.map(u => (
-              <li key={u} className="opacity-80 transition-opacity hover:opacity-100">
-                {u}
-              </li>
-            ))}
-          </ul>
+        <div className="container-hes flex flex-col gap-6 px-5 py-8 sm:px-8">
+          <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:gap-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-orange md:w-48 md:flex-shrink-0">
+              Universités partenaires
+            </p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-1 text-xs font-semibold text-text-muted/85">
+              {UNIVERSITIES.map(u => (
+                <li key={u} className="transition-opacity hover:opacity-100">
+                  {u}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="flex flex-col gap-3 md:flex-row md:items-baseline md:gap-8">
+            <p className="text-xs uppercase tracking-[0.2em] text-orange md:w-48 md:flex-shrink-0">
+              Pays couverts
+            </p>
+            <ul className="flex flex-wrap gap-x-5 gap-y-1 text-xs text-text-muted/85">
+              {COUNTRIES.map(c => (
+                <li key={c.name} className="flex items-center gap-1.5">
+                  <span aria-hidden="true">{c.flag}</span>
+                  <span className="font-semibold">{c.name}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 

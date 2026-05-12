@@ -108,6 +108,25 @@ export default function AProposPage() {
           </ul>
         </div>
       </section>
+
+      <section className="section-padding pt-0">
+        <div className="container-hes">
+          <div className="rounded-2xl border border-orange/30 bg-gradient-to-br from-navy to-tile p-8 sm:p-12">
+            <p className="label-tag">— Notre ambition</p>
+            <h2 className="mt-2 max-w-3xl text-2xl font-bold tracking-tight sm:text-3xl">
+              Devenir le partenaire <span className="text-orange">scientifique de référence</span> de la recherche africaine et internationale.
+            </h2>
+            <p className="mt-4 max-w-3xl leading-relaxed text-text-muted">
+              HES accompagne aujourd'hui des étudiants et chercheurs au Sénégal,
+              au Burkina Faso, en Mauritanie, au Maroc, en Tunisie et en France.
+              Notre ambition à moyen terme : étendre nos services aux <strong className="text-text">grandes
+              institutions de santé publique</strong> (OMS, UNICEF, ONG internationales)
+              et aux <strong className="text-text">programmes de recherche multi-pays</strong> qui
+              ont besoin d'une expertise méthodologique et statistique francophone, ancrée localement.
+            </p>
+          </div>
+        </div>
+      </section>
     </>
   );
 }

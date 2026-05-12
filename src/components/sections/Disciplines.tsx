@@ -7,12 +7,9 @@ const DISCIPLINES = [
   'Nutrition',
   'Agronomie',
   'Sciences vétérinaires',
-  'Sociologie',
   'Économie',
   'Éducation',
   'Anthropologie',
-  'Démographie',
-  'Sciences politiques',
   'Environnement',
 ];
 
