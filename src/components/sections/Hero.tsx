@@ -34,7 +34,7 @@ export function Hero() {
       {/* Logo décoratif géant rotatif sur la droite — derrière le contenu */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-24 top-1/2 hidden -translate-y-1/2 opacity-[0.15] md:block"
+        className="pointer-events-none absolute -right-20 top-1/2 hidden -translate-y-1/2 opacity-[0.28] md:block"
       >
         <img
           src="/logo-navy.png?v=1"

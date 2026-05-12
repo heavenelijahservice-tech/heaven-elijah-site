@@ -8,9 +8,9 @@ export const SITE = {
   locale: 'fr_FR',
   contact: {
     email: 'heaven.elijahservice@gmail.com',
-    phone: '+221 76 387 34 28',
-    whatsapp: '+221 77 130 41 65',
-    whatsappLink: 'https://wa.me/221771304165',
+    phone: '+221 77 130 41 65',
+    whatsapp: '+221 76 387 34 28',
+    whatsappLink: 'https://wa.me/221763873428',
     address: 'Dakar, Sénégal',
   },
   social: {
