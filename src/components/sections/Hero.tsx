@@ -31,15 +31,15 @@ export function Hero() {
         }}
       />
 
-      {/* Logo décoratif géant rotatif sur la droite — derrière le contenu */}
+      {/* Logo décoratif géant rotatif sur la droite — picto transparent, blend parfait */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute -right-20 top-1/2 hidden -translate-y-1/2 opacity-[0.28] md:block"
+        className="pointer-events-none absolute -right-16 top-1/2 hidden -translate-y-1/2 opacity-50 md:block"
       >
         <img
-          src="/logo-navy.png?v=1"
+          src="/logo-picto.png?v=2"
           alt=""
-          className="animate-spin-slow h-[520px] w-[520px]"
+          className="animate-spin-slow h-[480px] w-[480px]"
         />
       </div>
 
