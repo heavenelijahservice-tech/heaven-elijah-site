@@ -9,8 +9,20 @@ export type AnimatedCounterProps = {
   className?: string;
 };
 
+/**
+ * Compteur animé 0 → `to` à l'entrée dans le viewport.
+ *
+ * SSR strategy:
+ * - Le rendu initial (serveur + hydration) affiche `to` directement.
+ *   → Crawlers (Google, OG), utilisateurs sans JS et `prefers-reduced-motion`
+ *     voient toujours la vraie valeur.
+ * - Au mount client, si la section est sous le fold, on remet à 0 puis on
+ *   anime quand IntersectionObserver détecte l'intersection.
+ * - Si la section est déjà visible au mount, on saute l'animation pour
+ *   éviter un flash "300 → 0 → 300".
+ */
 export function AnimatedCounter({ to, durationMs = 1200, suffix = '', className = '' }: AnimatedCounterProps) {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState(to);
   const ref = useRef<HTMLSpanElement>(null);
   const startedRef = useRef(false);
 
@@ -18,11 +30,17 @@ export function AnimatedCounter({ to, durationMs = 1200, suffix = '', className 
     const node = ref.current;
     if (!node) return;
 
-    const prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduce) {
-      setValue(to);
-      return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return; // garde la valeur cible, pas d'animation
     }
+
+    const rect = node.getBoundingClientRect();
+    const alreadyVisible = rect.top < window.innerHeight && rect.bottom > 0;
+    if (alreadyVisible) {
+      return; // déjà à l'écran au mount → pas d'animation pour éviter le flash
+    }
+
+    setValue(0);
 
     const observer = new IntersectionObserver(
       entries => {
