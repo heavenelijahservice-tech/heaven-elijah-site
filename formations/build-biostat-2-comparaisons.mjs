@@ -14,6 +14,7 @@
 import pptxgen from 'pptxgenjs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { plotBox } from './lib/plots.mjs';
 
 const projectRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outPath = path.join(projectRoot, 'formations', 'output', 'biostat-module-2-comparaisons.pptx');
@@ -331,22 +332,42 @@ function testSlide(slide, opts) {
 }
 
 // ============================================================
-// SLIDE 4 — Welch (et son cousin Student)
+// SLIDE 4 — Welch + box plot illustré
 // ============================================================
 {
   const s = pres.addSlide();
   s.background = { color: C.CREAM };
   footer(s, 4);
 
-  testSlide(s, {
-    labelTxt: '2 GROUPES INDÉPENDANTS · QUANTITATIF NORMAL',
-    titleTxt: 'Welch par défaut. Student en exception.',
-    leadTxt: 'Welch est robuste aux variances inégales ET aussi puissant que Student quand elles sont égales. En routine, je le lance directement. Si ton encadreur insiste pour Student, vérifie d\'abord Levene.',
-    code:
-      '# Welch : pas d\'hypothèse sur les variances\nt.test(hba1c ~ groupe, data = donnees,\n       var.equal = FALSE)\n\n# Cohen\'s d pour la taille d\'effet\nlibrary(effsize)\ncohen.d(hba1c ~ groupe, data = donnees)',
-    output:
-      'Welch Two Sample t-test\n\nt = -3.42, df = 47.8, p = 0.0013\nIC95% [-1.42, -0.36]\nmean grp A = 7.1, grp B = 8.0\n\nCohen\'s d: -0.78 (medium-large)\n→ Différence significative et\n  cliniquement pertinente.',
-    aside: 'Ce que le jury va demander : « Pourquoi Welch et pas Student ? » Réponse blindée : Welch est valide sans condition, Student exige l\'égalité des variances.',
+  label(s, '2 GROUPES INDÉPENDANTS · QUANTITATIF NORMAL');
+  title(s, 'Welch par défaut. Student en exception.', 0.9, C.TEXT_DARK, 12, 28);
+  prose(s,
+    'Welch est robuste aux variances inégales ET aussi puissant que Student quand elles sont égales. En routine, je le lance directement. Si ton encadreur insiste pour Student, vérifie d\'abord Levene.',
+    0.7, 2.0, 12, 1.0, 13,
+  );
+
+  codeBlock(s,
+    '# Welch sans hypothèse\n# sur les variances\nt.test(hba1c ~ groupe,\n       data = donnees,\n       var.equal = FALSE)\n\n# Taille d\'effet\nlibrary(effsize)\ncohen.d(hba1c ~ groupe,\n        data = donnees)',
+    0.7, 3.2, 4.3, 3.2,
+  );
+
+  outputBlock(s,
+    'Welch t-test\n\nt = -3.42\np = 0.0013\nIC95%\n[-1.42, -0.36]\n\nCohen\'s d = -0.78\n(moyen-fort)',
+    5.15, 3.2, 2.8, 3.2,
+  );
+
+  plotBox(s, {
+    x: 8.1, y: 3.2, w: 4.73, h: 3.2,
+    title: 'HbA1c · bras A vs bras B',
+    groups: [
+      { label: 'A',  min: 6.0, q1: 6.7, median: 7.1, q3: 7.6, max: 8.4, accent: false },
+      { label: 'B',  min: 6.9, q1: 7.5, median: 8.0, q3: 8.5, max: 9.4, accent: true  },
+    ],
+  });
+
+  s.addText('Ce que le jury va demander : « Pourquoi Welch et pas Student ? » Réponse blindée : Welch est valide sans condition, Student exige l\'égalité des variances.', {
+    x: 0.7, y: 6.55, w: 12, h: 0.4,
+    fontSize: 11, fontFace: F.BODY, color: C.TEXT_MUTED, italic: true, align: 'center',
   });
 }
 
@@ -403,22 +424,43 @@ function testSlide(slide, opts) {
 }
 
 // ============================================================
-// SLIDE 7 — ANOVA + Tukey
+// SLIDE 7 — ANOVA + Tukey, illustrée par box plot 3 groupes
 // ============================================================
 {
   const s = pres.addSlide();
   s.background = { color: C.CREAM };
   footer(s, 7);
 
-  testSlide(s, {
-    labelTxt: '≥ 3 GROUPES · QUANTITATIF NORMAL',
-    titleTxt: 'ANOVA dit « ça bouge ». Tukey dit « où ».',
-    leadTxt: 'ANOVA répond à « y a-t-il une différence quelque part ? ». Si oui, elle ne te dit pas entre quels groupes. C\'est Tukey HSD (post-hoc) qui le précise — sans Tukey, ton ANOVA significative n\'est pas utilisable pour conclure.',
-    code:
-      '# Vérif préalables\nlibrary(car)\nleveneTest(score ~ region, data = donnees)\n\n# ANOVA\nmodele <- aov(score ~ region, data = donnees)\nsummary(modele)\n\n# Post-hoc Tukey\nTukeyHSD(modele)',
-    output:
-      'Df  Sum Sq  F value  Pr(>F)\nregion       2  124.5   8.31    0.0006 ***\nResiduals   87  650.8\n\n$region (Tukey HSD)\n          diff    p adj\nB-A      1.2     0.012 *\nC-A      2.4     0.0003 ***\nC-B      1.2     0.014 *',
-    aside: 'Si Levene rejette : ANOVA de Welch (oneway.test) puis Games-Howell en post-hoc. Plus robuste sur variances inégales.',
+  label(s, '≥ 3 GROUPES · QUANTITATIF NORMAL');
+  title(s, 'ANOVA dit « ça bouge ». Tukey dit « où ».', 0.9, C.TEXT_DARK, 12, 28);
+  prose(s,
+    'ANOVA répond à « y a-t-il une différence quelque part ? ». Si oui, elle ne te dit pas entre quels groupes — c\'est Tukey HSD (post-hoc) qui le précise. Sans Tukey, ton ANOVA significative n\'est pas utilisable pour conclure.',
+    0.7, 2.0, 12, 1.0, 13,
+  );
+
+  codeBlock(s,
+    '# Vérif préalables\nlibrary(car)\nleveneTest(score ~ region,\n           data = donnees)\n\n# ANOVA\nmodele <- aov(score ~ region,\n              data = donnees)\nsummary(modele)\n\n# Post-hoc Tukey\nTukeyHSD(modele)',
+    0.7, 3.2, 4.3, 3.2,
+  );
+
+  outputBlock(s,
+    'ANOVA\nF = 8.31\np = 0.0006\n\nTukey HSD\nB-A  diff +1.2\n     p = 0.012\nC-A  diff +2.4\n     p < 0.001\nC-B  diff +1.2\n     p = 0.014',
+    5.15, 3.2, 2.8, 3.2,
+  );
+
+  plotBox(s, {
+    x: 8.1, y: 3.2, w: 4.73, h: 3.2,
+    title: 'Score par région · A < B < C',
+    groups: [
+      { label: 'A', min: 4.5, q1: 5.4, median: 6.0, q3: 6.7, max: 7.5, accent: false },
+      { label: 'B', min: 5.5, q1: 6.5, median: 7.2, q3: 8.0, max: 8.8, accent: false },
+      { label: 'C', min: 6.5, q1: 7.7, median: 8.4, q3: 9.1, max: 9.9, accent: true  },
+    ],
+  });
+
+  s.addText('Si Levene rejette : ANOVA de Welch (oneway.test) puis Games-Howell en post-hoc. Plus robuste sur variances inégales.', {
+    x: 0.7, y: 6.55, w: 12, h: 0.4,
+    fontSize: 11, fontFace: F.BODY, color: C.TEXT_MUTED, italic: true, align: 'center',
   });
 }
 

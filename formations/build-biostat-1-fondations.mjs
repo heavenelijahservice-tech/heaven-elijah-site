@@ -18,6 +18,7 @@
 import pptxgen from 'pptxgenjs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { plotQQ } from './lib/plots.mjs';
 
 const projectRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outPath = path.join(projectRoot, 'formations', 'output', 'biostat-module-1-fondations.pptx');
@@ -619,7 +620,7 @@ function prose(slide, text, x, y, w, h, fontSize = 14) {
 }
 
 // ============================================================
-// SLIDE 9 — Shapiro-Wilk
+// SLIDE 9 — Shapiro-Wilk + QQ-plot illustré
 // ============================================================
 {
   const s = pres.addSlide();
@@ -631,21 +632,27 @@ function prose(slide, text, x, y, w, h, fontSize = 14) {
 
   prose(s,
     'Quand tu testes la normalité, ne te fie pas qu\'à Shapiro. Sur N = 30, il rate des écarts visibles à l\'œil. Sur N = 1 000, il rejette pour des écarts microscopiques sans conséquence pratique. Le QQ-plot est ton garde-fou visuel.',
-    0.7, 2.05, 12, 1.4, 14,
+    0.7, 2.05, 12, 1.0, 13,
   );
 
+  // 3 colonnes : code · sortie · plot
   codeBlock(s,
-    '# Test\nshapiro.test(donnees$tension)\n\n# Toujours doublé par le QQ-plot\nqqnorm(donnees$tension,\n       main = "QQ-plot tension")\nqqline(donnees$tension,\n       col = "red", lwd = 2)',
-    0.7, 3.55, 6.0, 2.7,
+    '# Test\nshapiro.test(\n  donnees$tension)\n\n# Doubler par\n# le QQ-plot\nqqnorm(donnees$tension)\nqqline(donnees$tension,\n       col = "red")',
+    0.7, 3.2, 4.3, 3.2,
   );
 
   outputBlock(s,
-    'Shapiro-Wilk normality test\n\ndata:  donnees$tension\nW = 0.987, p-value = 0.234\n\n→ p > 0,05, on ne rejette pas\n  la normalité.\n→ Si les points du QQ-plot\n  suivent la ligne : test\n  paramétrique acceptable.',
-    7.0, 3.55, 5.83, 2.7,
+    'Shapiro-Wilk\n\nW = 0.987\np = 0.234\n\n→ p > 0,05,\n  on ne rejette\n  pas la\n  normalité.',
+    5.15, 3.2, 2.8, 3.2,
   );
 
-  s.addText('Sur les gros échantillons, Shapiro rejette presque toujours — fais confiance au QQ-plot avant tout.', {
-    x: 0.7, y: 6.45, w: 12, h: 0.4,
+  plotQQ(s, {
+    x: 8.1, y: 3.2, w: 4.73, h: 3.2,
+    title: 'QQ-plot · ici linéaire = normal',
+  });
+
+  s.addText('Si les points du QQ-plot suivent globalement la ligne orange pointillée, ta distribution est cohérente avec la normalité — quelle que soit la p-value de Shapiro.', {
+    x: 0.7, y: 6.55, w: 12, h: 0.4,
     fontSize: 11, fontFace: F.BODY, color: C.TEXT_MUTED, italic: true, align: 'center',
   });
 }

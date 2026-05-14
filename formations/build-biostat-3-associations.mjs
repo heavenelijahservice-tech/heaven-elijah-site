@@ -13,6 +13,7 @@
 import pptxgen from 'pptxgenjs';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { plotScatter, plotROC } from './lib/plots.mjs';
 
 const projectRoot = path.join(path.dirname(fileURLToPath(import.meta.url)), '..');
 const outPath = path.join(projectRoot, 'formations', 'output', 'biostat-module-3-associations.pptx');
@@ -311,42 +312,76 @@ function testSlide(slide, opts) {
 }
 
 // ============================================================
-// SLIDE 4 — Corrélations (Pearson + Spearman)
+// SLIDE 4 — Corrélations + scatter illustratif
 // ============================================================
 {
   const s = pres.addSlide();
   s.background = { color: C.CREAM };
   footer(s, 4);
 
-  testSlide(s, {
-    labelTxt: 'CORRÉLATIONS · PEARSON ET SPEARMAN',
-    titleTxt: 'La force du lien, pas la causalité.',
-    leadTxt: 'Pearson mesure une relation linéaire entre deux variables continues normales. Spearman mesure une relation monotone, sur les rangs — robuste aux données non-normales et aux valeurs extrêmes. Aucun des deux ne dit que X cause Y.',
-    code:
-      '# Pearson (linéaire, normales)\ncor.test(donnees$age,\n         donnees$hba1c,\n         method = "pearson")\n\n# Spearman (rangs, non-normales\n# ou relation monotone)\ncor.test(donnees$age,\n         donnees$hba1c,\n         method = "spearman")',
-    output:
-      'Pearson\'s product-moment\n   correlation\nt = 4.21, df = 58\np-value = 8.7e-05\nIC95% [0.30, 0.65]\nr = 0.49\n\nSpearman\'s rank correlation\nrho = 0.46, p = 0.0002\n\n→ Lien modéré et significatif.',
-    aside: 'En soutenance, évite « X cause Y » — dis « X est associé à Y ». Une corrélation n\'est jamais une preuve de causalité, même r = 0.95.',
+  label(s, 'CORRÉLATIONS · PEARSON ET SPEARMAN');
+  title(s, 'La force du lien, pas la causalité.', 0.9, C.TEXT_DARK, 12, 28);
+  prose(s,
+    'Pearson mesure une relation linéaire entre deux continues normales. Spearman mesure une relation monotone sur les rangs — robuste aux données non-normales et aux valeurs extrêmes. Aucun des deux ne dit que X cause Y.',
+    0.7, 2.0, 12, 1.0, 13,
+  );
+
+  codeBlock(s,
+    '# Pearson (linéaire,\n# normales)\ncor.test(donnees$age,\n         donnees$hba1c,\n         method = "pearson")\n\n# Spearman (rangs,\n# non-normales)\ncor.test(donnees$age,\n         donnees$hba1c,\n         method = "spearman")',
+    0.7, 3.2, 4.3, 3.2,
+  );
+
+  outputBlock(s,
+    'Pearson\nr = 0.49\nIC95%\n[0.30, 0.65]\np = 8.7e-05\n\nSpearman\nrho = 0.46\np = 0.0002',
+    5.15, 3.2, 2.8, 3.2,
+  );
+
+  plotScatter(s, {
+    x: 8.1, y: 3.2, w: 4.73, h: 3.2,
+    title: 'HbA1c en fonction de l\'âge · r = 0.49',
+    slope: 0.7, intercept: 0.12, scatter: 0.12,
+  });
+
+  s.addText('En soutenance, évite « X cause Y » — dis « X est associé à Y ». Une corrélation n\'est jamais une preuve de causalité, même r = 0.95.', {
+    x: 0.7, y: 6.55, w: 12, h: 0.4,
+    fontSize: 11, fontFace: F.BODY, color: C.TEXT_MUTED, italic: true, align: 'center',
   });
 }
 
 // ============================================================
-// SLIDE 5 — Régression linéaire simple
+// SLIDE 5 — Régression linéaire simple + scatter avec droite
 // ============================================================
 {
   const s = pres.addSlide();
   s.background = { color: C.CREAM };
   footer(s, 5);
 
-  testSlide(s, {
-    labelTxt: 'RÉGRESSION LINÉAIRE SIMPLE',
-    titleTxt: 'Y = β₀ + β₁X + ε. Une équation à défendre.',
-    leadTxt: 'Modélise Y comme fonction linéaire de X. Le coefficient β₁ se lit : « pour 1 unité d\'augmentation de X, Y change de β₁ unités, en moyenne ». Le R² indique la part de variance de Y expliquée par X.',
-    code:
-      '# Régression linéaire simple\nmodele <- lm(hba1c ~ age,\n             data = donnees)\nsummary(modele)\n\n# Vérifs visuelles\npar(mfrow = c(2, 2))\nplot(modele)',
-    output:
-      'Coefficients:\n            Estimate  Std.Err  t   Pr(>|t|)\n(Intercept)  4.21     0.65    6.5  3e-08\nage          0.052    0.011   4.7  1e-05\n\nMultiple R² = 0.27\nF-statistic = 22.1, p = 1e-05\n\n→ Chaque année d\'âge ajoute en\n  moyenne 0,052 % d\'HbA1c.',
-    aside: 'plot(modele) affiche 4 graphes de diagnostic : linéarité, normalité des résidus, homoscédasticité, valeurs influentes. À vérifier avant de défendre les coefficients.',
+  label(s, 'RÉGRESSION LINÉAIRE SIMPLE');
+  title(s, 'Y = β₀ + β₁X + ε. Une équation à défendre.', 0.9, C.TEXT_DARK, 12, 28);
+  prose(s,
+    'Modélise Y comme fonction linéaire de X. β₁ se lit : « pour 1 unité d\'augmentation de X, Y change de β₁ unités, en moyenne ». R² indique la part de variance de Y expliquée par X.',
+    0.7, 2.0, 12, 1.0, 13,
+  );
+
+  codeBlock(s,
+    '# Régression simple\nmodele <- lm(\n  hba1c ~ age,\n  data = donnees)\n\nsummary(modele)\n\n# Diagnostics\npar(mfrow = c(2, 2))\nplot(modele)',
+    0.7, 3.2, 4.3, 3.2,
+  );
+
+  outputBlock(s,
+    'Coefficients\n(Intercept) 4.21\n  Pr <3e-08\nage         0.052\n  Pr <1e-05\n\nR² = 0.27\nF p < 1e-05',
+    5.15, 3.2, 2.8, 3.2,
+  );
+
+  plotScatter(s, {
+    x: 8.1, y: 3.2, w: 4.73, h: 3.2,
+    title: 'Y = 4.21 + 0.052·âge · R² = 0.27',
+    slope: 0.55, intercept: 0.15, scatter: 0.10,
+  });
+
+  s.addText('plot(modele) affiche 4 graphes de diagnostic : linéarité, normalité des résidus, homoscédasticité, valeurs influentes. À vérifier avant de défendre les coefficients.', {
+    x: 0.7, y: 6.55, w: 12, h: 0.4,
+    fontSize: 11, fontFace: F.BODY, color: C.TEXT_MUTED, italic: true, align: 'center',
   });
 }
 
@@ -511,23 +546,39 @@ function testSlide(slide, opts) {
 }
 
 // ============================================================
-// SLIDE 12 — Évaluer le modèle logistique
+// SLIDE 12 — Évaluer le modèle logistique + courbe ROC
 // ============================================================
 {
   const s = pres.addSlide();
   s.background = { color: C.CREAM };
   footer(s, 12);
 
-  testSlide(s, {
-    labelTxt: 'ÉVALUER UN MODÈLE LOGISTIQUE',
-    titleTxt: 'AUC, calibration, R² : trois angles à connaître.',
-    leadTxt: 'Une fois ton modèle posé, le jury va te demander : est-il bon ? Trois indicateurs à rapporter — discrimination (AUC), calibration (Hosmer-Lemeshow), explication (R² de McFadden ou Nagelkerke).',
-    code:
-      '# Discrimination : aire sous ROC\nlibrary(pROC)\nproba <- predict(modele, type = "response")\nauc(donnees$maladie, proba)\n\n# Calibration : Hosmer-Lemeshow\nlibrary(ResourceSelection)\nhoslem.test(donnees$maladie, proba, g = 10)\n\n# Pseudo-R²\nlibrary(DescTools)\nPseudoR2(modele, which = "Nagelkerke")',
-    auc: 'AUC = 0.78',
-    output:
-      'AUC: 0.782\n(95% CI: 0.71 — 0.85)\n→ Discrimination correcte\n  (> 0.7 acceptable, > 0.8 bon)\n\nHosmer-Lemeshow X² = 8.4\ndf = 8, p = 0.39\n→ p > 0.05 = calibration OK\n  (paradoxalement, p élevé = bon)\n\nNagelkerke R² = 0.31',
-    aside: 'Le piège Hosmer-Lemeshow : un p > 0.05 est BON (le modèle calibre bien). Inverse de la lecture habituelle. Beaucoup d\'étudiants se plantent là-dessus.',
+  label(s, 'ÉVALUER UN MODÈLE LOGISTIQUE');
+  title(s, 'AUC, calibration, R² : trois angles à connaître.', 0.9, C.TEXT_DARK, 12, 28);
+  prose(s,
+    'Une fois ton modèle posé, le jury va demander : est-il bon ? Trois indicateurs — discrimination (AUC), calibration (Hosmer-Lemeshow), explication (R² de McFadden ou Nagelkerke).',
+    0.7, 2.0, 12, 1.0, 13,
+  );
+
+  codeBlock(s,
+    '# Discrimination\nlibrary(pROC)\nproba <- predict(modele,\n                  type = "response")\nauc(donnees$maladie, proba)\nroc_obj <- roc(donnees$maladie,\n               proba)\nplot(roc_obj)\n\n# Calibration\nlibrary(ResourceSelection)\nhoslem.test(donnees$maladie,\n            proba, g = 10)',
+    0.7, 3.2, 4.3, 3.2,
+  );
+
+  outputBlock(s,
+    'AUC = 0.782\nIC95%\n[0.71, 0.85]\n→ discrimination\n  correcte.\n\nHL X² = 8.4\np = 0.39\n→ calibration OK\n  (p > 0.05 = bon).',
+    5.15, 3.2, 2.8, 3.2,
+  );
+
+  plotROC(s, {
+    x: 8.1, y: 3.2, w: 4.73, h: 3.2,
+    title: 'Courbe ROC · modèle logistique',
+    auc: '0.78',
+  });
+
+  s.addText('Le piège Hosmer-Lemeshow : un p > 0.05 est BON (le modèle calibre bien). Inverse de la lecture habituelle. Beaucoup d\'étudiants se plantent là-dessus.', {
+    x: 0.7, y: 6.55, w: 12, h: 0.4,
+    fontSize: 11, fontFace: F.BODY, color: C.TEXT_MUTED, italic: true, align: 'center',
   });
 }
 
