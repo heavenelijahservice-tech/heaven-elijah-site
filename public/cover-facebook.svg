@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="360" viewBox="0 0 820 360">
+  <defs>
+    <radialGradient id="orangeBlob" cx="0.85" cy="0.25" r="0.55">
+      <stop offset="0%" stop-color="#f09042" stop-opacity="0.42"/>
+      <stop offset="55%" stop-color="#f09042" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f09042" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blueAccent" cx="0.05" cy="0.85" r="0.4">
+      <stop offset="0%" stop-color="#1a2541" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#1a2541" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Navy background -->
+  <rect width="820" height="360" fill="#0e1729"/>
+
+  <!-- Subtle bottom-left blue accent -->
+  <rect width="820" height="360" fill="url(#blueAccent)"/>
+
+  <!-- Orange radial halo top-right -->
+  <rect width="820" height="360" fill="url(#orangeBlob)"/>
+
+  <!-- HES logo mark, right side (safe zone) -->
+  <image href="logo-picto.png" x="600" y="70" width="180" height="180" preserveAspectRatio="xMidYMid meet"/>
+
+  <!-- Brand label -->
+  <text x="55" y="75"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="14" font-weight="700" fill="#f09042"
+        letter-spacing="4">— HEAVEN ELIJAH SERVICE</text>
+
+  <!-- Tagline line 1 -->
+  <text x="55" y="155"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="46" font-weight="800" fill="#ffffff"
+        letter-spacing="-2">De la conception</text>
+
+  <!-- Tagline line 2 with orange accent -->
+  <text x="55" y="205"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="46" font-weight="800"
+        letter-spacing="-2"
+        xml:space="preserve"><tspan fill="#ffffff">à la </tspan><tspan fill="#f09042">soutenance.</tspan></text>
+
+  <!-- Small orange separator -->
+  <line x1="55" y1="240" x2="160" y2="240" stroke="#f09042" stroke-width="2"/>
+
+  <!-- Services -->
+  <text x="55" y="265"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="14" font-weight="500" fill="#c9cfdc">
+    Mémoires · Thèses · Biostatistique · Méthodologie · Vancouver
+  </text>
+
+  <!-- Bottom-left: location -->
+  <text x="55" y="320"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="13" font-weight="500" fill="#ffffff">
+    📍 Thiès, Sénégal · Depuis 2021
+  </text>
+
+  <!-- Bottom-right: contact -->
+  <text x="765" y="320" text-anchor="end"
+        font-family="'JetBrains Mono', 'Fira Mono', ui-monospace, monospace"
+        font-size="13" font-weight="700" fill="#f09042">
+    +221 76 387 34 28
+  </text>
+</svg>
