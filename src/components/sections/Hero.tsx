@@ -37,7 +37,7 @@ export function Hero() {
         className="pointer-events-none absolute -right-20 top-1/2 hidden -translate-y-1/2 opacity-[0.12] md:block"
       >
         <img
-          src="/logo-icon.svg"
+          src="/logo-picto.png?v=2"
           alt=""
           width={400}
           height={400}
