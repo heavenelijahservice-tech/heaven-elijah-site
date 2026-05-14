@@ -17,36 +17,11 @@
   <!-- Orange radial halo, top-right -->
   <rect width="1200" height="630" fill="url(#orangeBlob)"/>
 
-  <!-- HES logo mark, large on the right (scaled from the 120×120 picto) -->
-  <g transform="translate(800, 115) scale(3.3)">
-    <!-- Cercle interrompu : haut-droit + bas-droit pour laisser passer le H -->
-    <path d="M 60 14
-             A 46 46 0 0 1 102 38
-             M 102 82
-             A 46 46 0 0 1 60 106
-             A 46 46 0 0 1 14 60
-             A 46 46 0 0 1 60 14 Z"
-          fill="none" stroke="#f5efe0" stroke-width="4.5" opacity="0.95"/>
-    <!-- Barre gauche du H -->
-    <rect x="40" y="8" width="15" height="104" fill="#f5efe0" rx="1.5" opacity="0.95"/>
-    <!-- Barre droite du H -->
-    <rect x="65" y="8" width="15" height="104" fill="#f5efe0" rx="1.5" opacity="0.95"/>
-    <!-- Crossbar derrière l'hélice -->
-    <rect x="46" y="54" width="28" height="12" fill="#f5efe0" opacity="0.95"/>
-    <!-- Hélice ADN orange double brin -->
-    <g stroke="#f09042" stroke-width="4" fill="none" stroke-linecap="round">
-      <path d="M 55 28
-               C 70 36, 70 46, 55 54
-               C 40 62, 40 72, 55 80
-               C 70 88, 70 94, 55 96"/>
-      <path d="M 65 28
-               C 50 36, 50 46, 65 54
-               C 80 62, 80 72, 65 80
-               C 50 88, 50 94, 65 96"/>
-    </g>
-    <!-- Bandeau crossbar par-dessus l'hélice -->
-    <rect x="55" y="54" width="10" height="12" fill="#f5efe0" opacity="0.95"/>
-  </g>
+  <!-- HES logo mark, large on the right.
+       href="logo-picto.png" works when this SVG is opened in a browser (relative path).
+       The build script (scripts/generate-og.mjs) replaces it with a base64 data URL
+       before feeding to sharp, because sharp can't resolve external image refs. -->
+  <image href="logo-picto.png" x="800" y="115" width="396" height="396" preserveAspectRatio="xMidYMid meet"/>
 
   <!-- Brand label top-left -->
   <text x="80" y="105"
