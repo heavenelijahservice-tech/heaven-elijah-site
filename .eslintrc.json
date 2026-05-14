@@ -1,6 +1,8 @@
 {
   "extends": "next/core-web-vitals",
   "rules": {
-    "react/no-unescaped-entities": "off"
+    "react/no-unescaped-entities": "off",
+    "// no-img-element": "Désactivé : site en export statique avec images.unoptimized=true → <Image> de next/image rend exactement le même <img>. Toutes nos balises <img> ont leurs dimensions imposées par Tailwind (size-N ou h-[Npx]), donc pas de CLS.",
+    "@next/next/no-img-element": "off"
   }
 }
