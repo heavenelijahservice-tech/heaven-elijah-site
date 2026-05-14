@@ -51,15 +51,9 @@ function frameAndArea(slide, opts) {
   const pw = w - padLeft - padRight;
   const ph = h - padTop - padBottom;
 
-  // Axes en L (gauche + bas)
-  slide.addShape('line', {
-    x: px, y: py + ph, w: pw, h: 0,
-    line: { color: COL.NAVY, width: 0.75 },
-  });
-  slide.addShape('line', {
-    x: px, y: py, w: 0, h: ph,
-    line: { color: COL.NAVY, width: 0.75 },
-  });
+  // Axes en L (gauche + bas) — via segment() pour éviter dimensions 0
+  segment(slide, px, py + ph, px + pw, py + ph, COL.NAVY, 0.75);
+  segment(slide, px, py, px, py + ph, COL.NAVY, 0.75);
 
   // Labels
   if (xLabel) {
@@ -89,23 +83,20 @@ function dot(slide, cx, cy, color = COL.NAVY, size = 0.07) {
 
 /**
  * Segment de droite de (x1,y1) à (x2,y2).
- * Utilise flipH/flipV pour les directions inverses au lieu de
- * dimensions négatives (qui corrompent le XML PPTX).
+ * Utilise flipH/flipV pour les directions inverses, dimensions toujours
+ * positives (PowerPoint refuse cx=0 ou cy=0 dans le XML).
  */
 function segment(slide, x1, y1, x2, y2, color = COL.NAVY, width = 1, dash = null) {
   const lineOpts = { color, width };
   if (dash) lineOpts.dashType = dash;
   const minX = Math.min(x1, x2);
   const minY = Math.min(y1, y2);
-  const w = Math.max(Math.abs(x2 - x1), 0.005);
-  const h = Math.max(Math.abs(y2 - y1), 0.005);
-  const flipH = x2 < x1;
-  const flipV = y2 < y1;
-  slide.addShape('line', {
-    x: minX, y: minY, w, h,
-    line: lineOpts,
-    flipH, flipV,
-  });
+  const w = Math.max(Math.abs(x2 - x1), 0.01);
+  const h = Math.max(Math.abs(y2 - y1), 0.01);
+  const shapeOpts = { x: minX, y: minY, w, h, line: lineOpts };
+  if (x2 < x1) shapeOpts.flipH = true;
+  if (y2 < y1) shapeOpts.flipV = true;
+  slide.addShape('line', shapeOpts);
 }
 
 // ============================================================
