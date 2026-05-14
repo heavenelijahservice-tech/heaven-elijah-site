@@ -157,6 +157,29 @@ export function getPacksByFamily(family: PackFamilyId): Pack[] {
   return PACKS.filter(p => p.family === family);
 }
 
+/**
+ * Taux de change utilisés pour l'affichage des prix multi-devises.
+ * - EUR : taux fixe légal depuis 1999 (1 EUR = 655,957 FCFA).
+ * - USD : approximation à mettre à jour si le cours EUR/USD évolue fortement.
+ */
+export const EUR_PER_XOF = 655.957;
+export const USD_PER_XOF = 600;
+
 export function formatFCFA(amount: number): string {
   return amount.toLocaleString('fr-FR') + ' FCFA';
+}
+
+export function formatEUR(fcfa: number): string {
+  const eur = Math.round(fcfa / EUR_PER_XOF);
+  return `≈ ${eur} €`;
+}
+
+export function formatUSD(fcfa: number): string {
+  const usd = Math.round(fcfa / USD_PER_XOF);
+  return `≈ ${usd} $`;
+}
+
+/** Renvoie les trois devises en une seule chaîne compacte : "≈ 137 € · ≈ 150 $". */
+export function formatEURandUSD(fcfa: number): string {
+  return `${formatEUR(fcfa)} · ${formatUSD(fcfa)}`;
 }

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ArrowLeft, RotateCcw, Check, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
-import { PACKS, formatFCFA, type Pack } from '@/data/packs';
+import { PACKS, formatFCFA, formatEURandUSD, type Pack } from '@/data/packs';
 import { SITE } from '@/data/site';
 
 type Stage = 'pas-commence' | 'en-collecte' | 'donnees-pretes' | 'document-presque-fini';
@@ -186,9 +186,14 @@ export function PackCalculator() {
                         {recommendedPack.name}
                       </h4>
                     </div>
-                    <p className="font-mono text-3xl font-bold text-orange">
-                      {formatFCFA(recommendedPack.priceFCFA)}
-                    </p>
+                    <div className="text-right">
+                      <p className="font-mono text-3xl font-bold leading-none text-orange">
+                        {formatFCFA(recommendedPack.priceFCFA)}
+                      </p>
+                      <p className="mt-1 font-mono text-xs text-text-muted">
+                        {formatEURandUSD(recommendedPack.priceFCFA)}
+                      </p>
+                    </div>
                   </div>
 
                   <ul className="mt-6 flex flex-col gap-2">

@@ -1,5 +1,5 @@
 import { Check } from 'lucide-react';
-import { type Pack, formatFCFA } from '@/data/packs';
+import { type Pack, formatFCFA, formatEURandUSD } from '@/data/packs';
 
 export function PackCard({ pack }: { pack: Pack }) {
   const featured = pack.featured;
@@ -11,11 +11,16 @@ export function PackCard({ pack }: { pack: Pack }) {
           : 'bg-tile border border-border-subtle hover:border-orange'
       }`}
     >
-      <header className="flex items-baseline justify-between">
+      <header className="flex items-baseline justify-between gap-3">
         <span className="label-tag">Pack</span>
-        <span className="font-mono text-2xl font-bold text-orange">
-          {formatFCFA(pack.priceFCFA)}
-        </span>
+        <div className="flex flex-col items-end">
+          <span className="font-mono text-2xl font-bold leading-none text-orange">
+            {formatFCFA(pack.priceFCFA)}
+          </span>
+          <span className="mt-1 font-mono text-[11px] text-text-muted">
+            {formatEURandUSD(pack.priceFCFA)}
+          </span>
+        </div>
       </header>
       <h3 className="text-xl font-bold tracking-tight">{pack.name}</h3>
       <ul className="flex flex-1 flex-col gap-2">

@@ -19,6 +19,9 @@ export default function ServicesPage() {
           <p className="mt-3 max-w-2xl text-text-muted">
             9 formules réparties en 3 familles. Choisissez selon où vous en êtes dans votre projet.
           </p>
+          <p className="mt-2 text-xs italic text-text-muted/70">
+            Tarifs facturés en FCFA · Équivalents EUR et USD indicatifs (paiement en devise possible au cours du jour).
+          </p>
         </div>
       </section>
 
