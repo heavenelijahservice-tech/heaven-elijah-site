@@ -65,19 +65,46 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
       <Field label="Nom complet" name="name" required error={errors.name}>
-        <input type="text" name="name" id="field-name" className="form-input" autoComplete="name" />
+        <input
+          type="text"
+          name="name"
+          id="field-name"
+          className="form-input"
+          autoComplete="name"
+          suppressHydrationWarning
+        />
       </Field>
 
       <Field label="Email" name="email" required error={errors.email}>
-        <input type="email" name="email" id="field-email" className="form-input" autoComplete="email" />
+        <input
+          type="email"
+          name="email"
+          id="field-email"
+          className="form-input"
+          autoComplete="email"
+          suppressHydrationWarning
+        />
       </Field>
 
       <Field label="Téléphone (optionnel)" name="phone">
-        <input type="tel" name="phone" id="field-phone" className="form-input" autoComplete="tel" />
+        <input
+          type="tel"
+          name="phone"
+          id="field-phone"
+          className="form-input"
+          autoComplete="tel"
+          suppressHydrationWarning
+        />
       </Field>
 
       <Field label="Type de besoin" name="need" required error={errors.need}>
-        <select name="need" id="field-need" className="form-input" defaultValue="">
+        <select
+          name="need"
+          id="field-need"
+          className="form-input"
+          defaultValue=""
+          suppressHydrationWarning
+        >
           <option value="" disabled>— Choisir —</option>
           <option>Pack Mémoire/Thèse</option>
           <option>Pack Analyse</option>
@@ -87,7 +114,16 @@ export function ContactForm() {
       </Field>
 
       <Field label="Décrivez votre projet" name="message" required error={errors.message}>
-        <textarea name="message" id="field-message" rows={5} className="form-input resize-y" />
+        <textarea
+          name="message"
+          id="field-message"
+          rows={5}
+          className="form-input resize-y"
+          suppressHydrationWarning
+          data-gramm="false"
+          data-gramm_editor="false"
+          data-enable-grammarly="false"
+        />
       </Field>
 
       {/* Honeypot anti-spam : invisible aux humains (off-screen) ET masqué aux lecteurs d'écran (aria-hidden). Les bots remplissent tous les champs, on rejette si rempli. */}
