@@ -48,7 +48,8 @@ npm run dev
 | Coordonnées (email, téléphone, WhatsApp) | `src/data/site.ts` |
 | Tarifs et contenu des packs | `src/data/packs.ts` |
 | Témoignages | `src/data/testimonials.ts` |
-| Logo | `public/logo.svg` |
+| Logo (picto vectoriel) | `public/logo-icon.svg` |
+| OG image (partage social) | `public/og-image.svg` puis `npm run og` |
 | Palette de couleurs | `src/app/globals.css` (bloc `@theme`) |
 | Métadonnées SEO globales | `src/app/layout.tsx` |
 | OG image | `public/og-image.png` (1200×630) — à créer |
@@ -72,15 +73,22 @@ Une fois `heavenelijahservice.org` acquis :
 
 ## Placeholders à remplacer avant mise en ligne publique
 
-- [ ] Logo SVG vectoriel HD (`public/logo.svg` — actuellement un placeholder géométrique)
-- [ ] OG image 1200×630 (`public/og-image.png` — à créer)
-- [ ] Favicon (`public/favicon.ico` — à créer)
-- [ ] Témoignages réels (`src/data/testimonials.ts`)
-- [ ] Texte mission complet (`src/app/a-propos/page.tsx`)
-- [ ] Photos d'équipe (`public/equipe/*` + `src/app/a-propos/page.tsx`)
-- [ ] Stats réelles (compteur dans `WhyHES.tsx` — actuellement `50+`)
-- [ ] Liens réseaux sociaux (`src/data/site.ts`)
-- [ ] Adresse exacte pour la carte Google Maps (`src/app/contact/page.tsx`)
+- [x] Logo vectoriel (`public/logo-icon.svg` — H + hélice ADN, design final)
+- [x] OG image 1200×630 (`public/og-image.png` — généré par `npm run og` depuis `og-image.svg`)
+- [x] Favicon (auto-généré par Next.js depuis `src/app/icon.svg`)
+- [x] Témoignages (`src/data/testimonials.ts` — 4 témoignages anonymisés cohérents avec retours réels, à remplacer par les vrais quand collectés avec consentement)
+- [x] Texte mission complet (`src/app/a-propos/page.tsx`)
+- [x] Équipe réelle (`src/app/a-propos/page.tsx` — Dr. R. Z. GANE-BANG + Dr. C. J. F. DEMBI)
+- [x] Stats réelles (`WhyHES.tsx` — 300+ depuis 2021, Mentions 98%)
+- [x] Linktree centralisé (`src/data/site.ts` — Facebook · Instagram · LinkedIn)
+- [x] Localisation (Thiès, Sénégal — site partout cohérent)
+
+### Évolutions futures possibles
+
+- [ ] Photos professionnelles de vrais clients consentants pour les témoignages (remplacer les avatars initiales par `avatar: '/equipe/...'` dans `testimonials.ts`)
+- [ ] Page entreprise LinkedIn dédiée à HES (actuellement Linktree pointe vers le profil personnel du fondateur)
+- [ ] Domaine personnalisé `heavenelijahservice.org` (à acquérir et lier à Vercel)
+- [ ] Variables d'environnement Formspree (`NEXT_PUBLIC_FORMSPREE_ID` dans Vercel)
 
 ## Architecture
 
