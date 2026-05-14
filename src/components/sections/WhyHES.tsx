@@ -32,7 +32,7 @@ export function WhyHES() {
           </BentoCard>
 
           <BentoCard tone="accent">
-            <p className="label-tag">Mentions obtenues</p>
+            <p className="label-tag !text-bg-deep">Mentions obtenues</p>
             <p className="mt-2 font-mono text-3xl font-bold">98 %</p>
           </BentoCard>
 
