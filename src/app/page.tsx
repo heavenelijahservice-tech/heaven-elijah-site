@@ -23,7 +23,8 @@ const jsonLd = {
   image: `${SITE.url}${SITE.ogImage}`,
   address: {
     '@type': 'PostalAddress',
-    addressLocality: 'Dakar',
+    addressLocality: 'Thiès',
+    addressRegion: 'Thiès',
     addressCountry: 'SN',
   },
   areaServed: { '@type': 'AdministrativeArea', name: 'Sénégal' },

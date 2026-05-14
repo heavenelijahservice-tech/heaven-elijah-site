@@ -11,7 +11,7 @@ describe('SITE config', () => {
     expect(SITE.contact.email).toMatch(/@/);
     expect(SITE.contact.whatsapp).toMatch(/^\+221/);
     expect(SITE.contact.phone).toMatch(/^\+221/);
-    expect(SITE.contact.address).toContain('Dakar');
+    expect(SITE.contact.address).toContain('Thiès');
   });
 
   it('uses the production URL', () => {

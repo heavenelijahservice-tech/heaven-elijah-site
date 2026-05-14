@@ -11,11 +11,12 @@ export const SITE = {
     phone: '+221 77 130 41 65',
     whatsapp: '+221 76 387 34 28',
     whatsappLink: 'https://wa.me/221763873428',
-    address: 'Dakar, Sénégal',
+    address: 'Thiès, Sénégal',
   },
   social: {
-    linkedin: '',
-    facebook: '',
+    /** Linktree centralisant Facebook, Instagram et LinkedIn. */
+    linktree: 'https://linktr.ee/Heaven_Elijah_Service',
+    platforms: ['Facebook', 'Instagram', 'LinkedIn'],
   },
   ogImage: '/og-image.png',
 } as const;

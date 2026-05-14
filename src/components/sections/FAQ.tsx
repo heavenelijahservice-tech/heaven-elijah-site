@@ -11,7 +11,7 @@ const FAQS = [
   },
   {
     q: 'Quels logiciels et standards utilisez-vous ?',
-    a: 'Analyses statistiques : R, Python, SPSS, Excel selon votre besoin. Collecte numérique : ODK, KoBo Toolbox, Google Forms. Références bibliographiques : Vancouver par défaut (APA, Chicago ou autre style sur demande). Tous nos livrables sont reproductibles et documentés.',
+    a: 'Analyses statistiques : R, Python, Epi Info, SPSS, Excel selon votre besoin. Collecte numérique : Google Forms, ODK, KoBo Toolbox. Références bibliographiques : Vancouver par défaut (APA, Chicago ou autre style sur demande). Tous nos livrables sont reproductibles et documentés.',
   },
   {
     q: 'Et si je ne suis pas satisfait du livrable ?',
@@ -19,7 +19,7 @@ const FAQS = [
   },
   {
     q: 'Acceptez-vous les paiements en plusieurs fois ?',
-    a: "L'acompte de 50 % à la signature est fixe. Le solde est dû à la livraison du livrable validé. Pour les packs Premium (Mémoire/Thèse 130 000 FCFA), un échelonnement en 3 fois est possible sur demande : 50 % à la signature, 30 % à mi-parcours, 20 % à la livraison finale.",
+    a: "L'acompte de 50 % à la signature est fixe. Le solde est dû à la livraison du livrable validé. Pour les packs Premium (Mémoire/Thèse 130 000 FCFA ≈ 198 € · 217 $), un échelonnement en 3 fois est possible sur demande : 50 % à la signature, 30 % à mi-parcours, 20 % à la livraison finale. Tarifs en FCFA — paiement possible en EUR ou USD sur demande au cours du jour.",
   },
 ];
 

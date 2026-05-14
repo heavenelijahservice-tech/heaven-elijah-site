@@ -45,7 +45,7 @@ export function Hero() {
 
       <div className="container-hes relative">
         <motion.p {...fadeUp(0)} className="label-tag">
-          — {SITE.contact.address} · Depuis 2024
+          — {SITE.contact.address} · Depuis 2021
         </motion.p>
 
         <motion.h1

@@ -90,8 +90,20 @@ export function Footer() {
               WhatsApp
             </a>
           </li>
-          <li>LinkedIn</li>
-          <li>Facebook</li>
+          <li>
+            <a
+              href={SITE.social.linktree}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block transition-colors hover:text-orange"
+              aria-label="Tous nos réseaux sociaux via Linktree"
+            >
+              <span className="block">Tous nos réseaux →</span>
+              <span className="mt-0.5 block text-[11px] text-text-muted/65 transition-colors group-hover:text-orange/70">
+                {SITE.social.platforms.join(' · ')}
+              </span>
+            </a>
+          </li>
         </FooterCol>
       </div>
 

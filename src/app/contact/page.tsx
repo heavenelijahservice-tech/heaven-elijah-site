@@ -56,9 +56,12 @@ export default function ContactPage() {
 
             <ContactCard Icon={MapPin} title="Localisation">
               <span>{SITE.contact.address}</span>
+              <p className="mt-1 text-xs text-text-muted">
+                Accompagnement <strong className="text-text">à distance</strong> · clients dans 6 pays
+              </p>
               <iframe
-                title="Carte de Dakar"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d62164.92!2d-17.49!3d14.7167!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172f50fe8e555%3A0x2bdf5d636cc7cea1!2sDakar!5e0!3m2!1sfr!2ssn!4v1700000000000"
+                title="Carte de Thiès, Sénégal"
+                src="https://maps.google.com/maps?q=Thi%C3%A8s,+S%C3%A9n%C3%A9gal&z=11&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="mt-3 h-32 w-full rounded-lg border border-border-subtle"
