@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="orangeBlob" cx="0.78" cy="0.15" r="0.55">
+      <stop offset="0%" stop-color="#f09042" stop-opacity="0.42"/>
+      <stop offset="55%" stop-color="#f09042" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#f09042" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="logoBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#15233f"/>
+      <stop offset="100%" stop-color="#1a2541"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Navy background -->
+  <rect width="1200" height="630" fill="#0e1729"/>
+
+  <!-- Orange radial halo, top-right -->
+  <rect width="1200" height="630" fill="url(#orangeBlob)"/>
+
+  <!-- HES logo mark, large on the right (scaled from the 120×120 picto) -->
+  <g transform="translate(800, 115) scale(3.3)">
+    <!-- Cercle interrompu : haut-droit + bas-droit pour laisser passer le H -->
+    <path d="M 60 14
+             A 46 46 0 0 1 102 38
+             M 102 82
+             A 46 46 0 0 1 60 106
+             A 46 46 0 0 1 14 60
+             A 46 46 0 0 1 60 14 Z"
+          fill="none" stroke="#f5efe0" stroke-width="4.5" opacity="0.95"/>
+    <!-- Barre gauche du H -->
+    <rect x="40" y="8" width="15" height="104" fill="#f5efe0" rx="1.5" opacity="0.95"/>
+    <!-- Barre droite du H -->
+    <rect x="65" y="8" width="15" height="104" fill="#f5efe0" rx="1.5" opacity="0.95"/>
+    <!-- Crossbar derrière l'hélice -->
+    <rect x="46" y="54" width="28" height="12" fill="#f5efe0" opacity="0.95"/>
+    <!-- Hélice ADN orange double brin -->
+    <g stroke="#f09042" stroke-width="4" fill="none" stroke-linecap="round">
+      <path d="M 55 28
+               C 70 36, 70 46, 55 54
+               C 40 62, 40 72, 55 80
+               C 70 88, 70 94, 55 96"/>
+      <path d="M 65 28
+               C 50 36, 50 46, 65 54
+               C 80 62, 80 72, 65 80
+               C 50 88, 50 94, 65 96"/>
+    </g>
+    <!-- Bandeau crossbar par-dessus l'hélice -->
+    <rect x="55" y="54" width="10" height="12" fill="#f5efe0" opacity="0.95"/>
+  </g>
+
+  <!-- Brand label top-left -->
+  <text x="80" y="105"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="22" font-weight="700" fill="#f09042"
+        letter-spacing="5">— HEAVEN ELIJAH SERVICE</text>
+
+  <!-- Big tagline line 1 -->
+  <text x="80" y="290"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="92" font-weight="800" fill="#ffffff"
+        letter-spacing="-3">De la conception</text>
+
+  <!-- Big tagline line 2 (with orange accent) -->
+  <text x="80" y="390"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="92" font-weight="800"
+        letter-spacing="-3"
+        xml:space="preserve"><tspan fill="#ffffff">à la </tspan><tspan fill="#f09042">soutenance.</tspan></text>
+
+  <!-- Separator -->
+  <line x1="80" y1="465" x2="240" y2="465" stroke="#f09042" stroke-width="3"/>
+
+  <!-- Tagline description -->
+  <text x="80" y="510"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="26" font-weight="500" fill="#ffffff">
+    Accompagnement scientifique pour étudiants et chercheurs.
+  </text>
+
+  <!-- Sub-info -->
+  <text x="80" y="550"
+        font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', system-ui, sans-serif"
+        font-size="20" font-weight="400" fill="#c9cfdc">
+    Mémoires · Thèses · Biostatistique · Thiès, Sénégal
+  </text>
+
+  <!-- URL bottom right -->
+  <text x="1120" y="585" text-anchor="end"
+        font-family="'JetBrains Mono', 'Fira Mono', 'Cascadia Mono', ui-monospace, Consolas, monospace"
+        font-size="22" font-weight="700" fill="#f09042">
+    heavenelijahservice.org
+  </text>
+</svg>

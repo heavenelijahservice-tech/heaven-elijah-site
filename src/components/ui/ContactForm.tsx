@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Send } from 'lucide-react';
+import { Send, Loader2 } from 'lucide-react';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -138,10 +138,20 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-orange px-5 py-3 text-sm font-bold text-bg-deep transition hover:-translate-y-px disabled:opacity-50"
+        aria-busy={status === 'submitting'}
+        className="mt-2 inline-flex items-center justify-center gap-2 rounded-md bg-orange px-5 py-3 text-sm font-bold text-bg-deep transition hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0"
       >
-        {status === 'submitting' ? 'Envoi…' : 'Envoyer ma demande'}
-        <Send className="size-4" aria-hidden="true" />
+        {status === 'submitting' ? (
+          <>
+            Envoi en cours
+            <Loader2 className="size-4 animate-spin" aria-hidden="true" />
+          </>
+        ) : (
+          <>
+            Envoyer ma demande
+            <Send className="size-4" aria-hidden="true" />
+          </>
+        )}
       </button>
 
       {status === 'error' && (
