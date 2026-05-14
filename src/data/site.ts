@@ -14,8 +14,8 @@ export const SITE = {
     address: 'Thiès, Sénégal',
   },
   social: {
-    /** Linktree centralisant Facebook, Instagram et LinkedIn. */
-    linktree: 'https://linktr.ee/Heaven_Elijah_Service',
+    /** Taplink centralisant Facebook, Instagram et LinkedIn (le champ garde le nom 'linktree' pour stabilité côté Footer). */
+    linktree: 'https://taplink.cc/heaven_elijah_service',
     platforms: ['Facebook', 'Instagram', 'LinkedIn'],
   },
   ogImage: '/og-image.png',
