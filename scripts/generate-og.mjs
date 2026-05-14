@@ -34,12 +34,14 @@ const TARGETS = [
     density: 192,
   },
   {
+    // Facebook upscale les covers sur écrans retina/HD — on rend à 2×
+    // la taille d'affichage (820×360) pour rester crisp.
     name: 'Facebook cover',
     svg: 'public/cover-facebook.svg',
     png: 'public/cover-facebook.png',
-    width: 820,
-    height: 360,
-    density: 240,
+    width: 1640,
+    height: 720,
+    density: 384,
   },
 ];
 
