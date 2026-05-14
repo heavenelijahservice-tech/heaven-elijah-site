@@ -87,13 +87,24 @@ function dot(slide, cx, cy, color = COL.NAVY, size = 0.07) {
   });
 }
 
-/** Segment de droite de (x1,y1) à (x2,y2). */
+/**
+ * Segment de droite de (x1,y1) à (x2,y2).
+ * Utilise flipH/flipV pour les directions inverses au lieu de
+ * dimensions négatives (qui corrompent le XML PPTX).
+ */
 function segment(slide, x1, y1, x2, y2, color = COL.NAVY, width = 1, dash = null) {
   const lineOpts = { color, width };
   if (dash) lineOpts.dashType = dash;
+  const minX = Math.min(x1, x2);
+  const minY = Math.min(y1, y2);
+  const w = Math.max(Math.abs(x2 - x1), 0.005);
+  const h = Math.max(Math.abs(y2 - y1), 0.005);
+  const flipH = x2 < x1;
+  const flipV = y2 < y1;
   slide.addShape('line', {
-    x: x1, y: y1, w: x2 - x1, h: y2 - y1,
+    x: minX, y: minY, w, h,
     line: lineOpts,
+    flipH, flipV,
   });
 }
 
