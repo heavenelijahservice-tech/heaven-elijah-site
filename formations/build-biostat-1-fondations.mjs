@@ -303,52 +303,57 @@ function prose(slide, text, x, y, w, h, fontSize = 14) {
     0.7, 2.05, 12, 1.0, 14,
   );
 
-  // Matrice 2×2
-  const mx = 2.5, my = 3.4, cw = 5.0, ch = 1.3;
+  // Matrice 2×2 — cellX = colonne de gauche des cellules, cellY = première rangée.
+  // Slide fait 13.33" de large : cellX + 2*cw = 12.5 (sous le bord droit à 13.33). ✓
+  const cellX = 2.6, cellY = 3.7, cw = 4.95, ch = 1.25;
 
+  // En-tête maître "RÉALITÉ" couvrant les 2 colonnes
   s.addText('RÉALITÉ', {
-    x: mx + cw, y: my - 0.55, w: 2 * cw, h: 0.3,
+    x: cellX, y: cellY - 0.6, w: 2 * cw, h: 0.3,
     fontSize: 10, fontFace: F.HEAD, color: C.TEXT_MUTED, bold: true, align: 'center', charSpacing: 3,
   });
+  // Sous-en-têtes de colonnes
   s.addText('H₀ vraie', {
-    x: mx + cw, y: my - 0.25, w: cw, h: 0.25,
+    x: cellX, y: cellY - 0.3, w: cw, h: 0.25,
     fontSize: 12, fontFace: F.HEAD, color: C.TEXT_DARK, bold: true, align: 'center',
   });
   s.addText('H₁ vraie', {
-    x: mx + 2 * cw, y: my - 0.25, w: cw, h: 0.25,
+    x: cellX + cw, y: cellY - 0.3, w: cw, h: 0.25,
     fontSize: 12, fontFace: F.HEAD, color: C.TEXT_DARK, bold: true, align: 'center',
   });
+  // Étiquettes de rangées (à gauche des cellules)
   s.addText('TA\nDÉCISION', {
-    x: mx - 1.6, y: my + 0.5, w: 1.5, h: 0.6,
+    x: 0.5, y: cellY - 0.6, w: 1.9, h: 0.6,
     fontSize: 10, fontFace: F.HEAD, color: C.TEXT_MUTED, bold: true, charSpacing: 3,
+    align: 'right', lineSpacingMultiple: 1.2,
+  });
+  s.addText('Ne pas\nrejeter H₀', {
+    x: 0.5, y: cellY, w: 1.95, h: ch, valign: 'middle',
+    fontSize: 12, fontFace: F.HEAD, color: C.TEXT_DARK, bold: true, align: 'right',
     lineSpacingMultiple: 1.2,
   });
-  s.addText('Ne pas rejeter H₀', {
-    x: mx - 1.6, y: my + 0.2, w: 1.5, h: ch, valign: 'middle',
-    fontSize: 12, fontFace: F.HEAD, color: C.TEXT_DARK, bold: true,
-  });
   s.addText('Rejeter H₀', {
-    x: mx - 1.6, y: my + ch + 0.2, w: 1.5, h: ch, valign: 'middle',
-    fontSize: 12, fontFace: F.HEAD, color: C.TEXT_DARK, bold: true,
+    x: 0.5, y: cellY + ch, w: 1.95, h: ch, valign: 'middle',
+    fontSize: 12, fontFace: F.HEAD, color: C.TEXT_DARK, bold: true, align: 'right',
   });
 
   function cell(col, row, bg, mainTxt, subTxt, mainColor) {
-    const x = mx + cw + col * cw;
-    const y = my + 0.2 + row * ch;
+    const x = cellX + col * cw;
+    const y = cellY + row * ch;
     s.addShape('rect', { x, y, w: cw, h: ch, fill: { color: bg }, line: { color: C.BORDER, width: 1 } });
     s.addText(mainTxt, {
-      x: x + 0.1, y: y + 0.1, w: cw - 0.2, h: 0.5,
-      fontSize: 18, fontFace: F.HEAD, color: mainColor, bold: true, align: 'center',
+      x: x + 0.1, y: y + 0.1, w: cw - 0.2, h: 0.45,
+      fontSize: 17, fontFace: F.HEAD, color: mainColor, bold: true, align: 'center',
     });
     s.addText(subTxt, {
-      x: x + 0.1, y: y + 0.65, w: cw - 0.2, h: 0.6,
+      x: x + 0.1, y: y + 0.6, w: cw - 0.2, h: 0.6,
       fontSize: 10, fontFace: F.BODY, color: mainColor, italic: true, align: 'center', lineSpacingMultiple: 1.2,
     });
   }
-  cell(0, 0, C.WHITE, 'Bonne décision', 'Niveau de confiance (1 − α)', C.TEXT_DARK);
-  cell(1, 0, C.WHITE, 'Erreur β', 'Faux négatif — tu rates un vrai effet', C.RED);
-  cell(0, 1, C.WHITE, 'Erreur α', 'Faux positif — tu « trouves » un effet inexistant', C.RED);
-  cell(1, 1, C.ORANGE, 'Puissance', '(1 − β) — c\'est ce que tu cherches', C.NAVY);
+  cell(0, 0, C.WHITE,  'Bonne décision', 'Niveau de confiance (1 − α)',                C.TEXT_DARK);
+  cell(1, 0, C.WHITE,  'Erreur β',       'Faux négatif — tu rates un vrai effet',      C.RED);
+  cell(0, 1, C.WHITE,  'Erreur α',       'Faux positif — tu « trouves » un effet inexistant', C.RED);
+  cell(1, 1, C.ORANGE, 'Puissance',      '(1 − β) — c\'est ce que tu cherches',        C.NAVY);
 
   // Aside ouvert
   s.addText('Entre nous : 80 % de puissance, ça veut dire que 1 fois sur 5 tu rates un vrai effet. La norme "α = 5 %, puissance = 80 %" n\'est pas magique — c\'est un compromis. Quand tu vises une publication, monte à 90 %.', {
