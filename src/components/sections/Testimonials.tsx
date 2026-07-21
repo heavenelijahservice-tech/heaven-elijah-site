@@ -1,18 +1,10 @@
-import { TESTIMONIALS, type Testimonial } from '@/data/testimonials';
+import { TESTIMONIALS } from '@/data/testimonials';
+import { TestimonialCard } from '@/components/ui/TestimonialCard';
 
-function getInitials(t: Testimonial): string {
-  if (t.initials) return t.initials;
-  return t.name
-    .replace(/^(Dr\.?|Pr\.?|Mr\.?|Mme\.?|M\.?) ?/i, '')
-    .split(/\s+/)
-    .map(part => part[0])
-    .filter(c => c && /[A-Za-zÀ-ÿ]/.test(c))
-    .slice(0, 2)
-    .join('')
-    .toUpperCase();
-}
+const MAX_ON_HOME = 4;
 
 export function Testimonials() {
+  const displayed = TESTIMONIALS.slice(0, MAX_ON_HOME);
   return (
     <section className="bg-light text-navy">
       <div className="container-hes section-padding">
@@ -25,43 +17,7 @@ export function Testimonials() {
         </p>
 
         <div className="mt-10 grid gap-4 md:grid-cols-2">
-          {TESTIMONIALS.map(t => (
-            <figure
-              key={t.id}
-              className="flex flex-col justify-between gap-4 rounded-xl border border-navy/10 bg-white p-6"
-            >
-              <blockquote className="text-base leading-relaxed">
-                <span className="mr-1 text-3xl leading-none text-orange">"</span>
-                {t.quote}
-              </blockquote>
-              <figcaption className="flex items-center gap-3 border-t border-navy/10 pt-4">
-                {t.avatar ? (
-                  <img
-                    src={t.avatar}
-                    alt=""
-                    aria-hidden="true"
-                    className="size-10 shrink-0 rounded-full object-cover"
-                  />
-                ) : (
-                  <span
-                    aria-hidden="true"
-                    className="flex size-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-navy via-navy to-orange-deep text-xs font-bold text-white"
-                  >
-                    {getInitials(t)}
-                  </span>
-                )}
-                <div>
-                  <p className="text-sm font-bold">{t.name}</p>
-                  <p className="text-xs text-navy/55">{t.role}</p>
-                </div>
-                {t.placeholder && (
-                  <span className="ml-auto rounded bg-orange px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest text-white">
-                    À remplir
-                  </span>
-                )}
-              </figcaption>
-            </figure>
-          ))}
+          {displayed.map(t => <TestimonialCard key={t.id} testimonial={t} />)}
         </div>
       </div>
     </section>
